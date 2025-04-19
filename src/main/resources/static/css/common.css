@@ -1,0 +1,60 @@
+.flex { /*자주 사용할것들*/
+    display: flex;
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.justify-content-center {
+    justify-content : center;
+ 
+    /* 요소가운데 */
+} 
+
+.align-items-center {
+    align-items: center;
+}
+
+.justify-space-between{
+    justify-content : space-between;
+}
+
+.mt-small{
+    margin-top:10px;
+}
+
+.mt-middle{
+    margin-top:50px;
+}
+
+.mb-middle {
+    margin-bottom: 50px;
+}
+
+.mb-small {
+    margin-bottom: 10px;
+}
+
+.mb-large{
+    margin-bottom: 100px;
+}
+
+.padding-small{
+    padding: 10px;
+}
+
+.pl-small{
+    padding-left: 10px;
+}
+
+.pr-small{
+    padding-right: 10px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+

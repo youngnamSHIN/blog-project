@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: youngnam
+  datasource:  # 데이터베이스 설정
+    driver-class-name: com.mysql.cj.jdbc.Driver  #driver-class-name은 Spring Boot에서 자동으로 인식하지 못하는 경우에 인식할 수 있도록 설정해 주는 것으로,
+    url: jdbc:mysql://localhost:3306/final?serverTimezone=UTC&characterEncoding=UTF-8 #url은 말 그대로 'database가 어디에 있는지'를 의미하고
+    username: root #Tcp/ ip 로 데이터베이스에 정보 전달
+    password: 1234
+  thymeleaf: # 타임리프 설정
+    prefix: classpath:templates/thymeleaf/ # 모델앤 뷰를 활용할떄 이 경로를 토대로 뷰를 찾는다.
+    check-template-location: true
+    suffix: .html
+    mode: HTML
+    cache: false
+server:
+  port: 8888

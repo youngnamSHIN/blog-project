@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+</head>
+<body>
+<div class="background flex justify-content-center align-items-center">
+    <div class = "login">
+        <div class="flex-column">
+            <span class="tittle">회원가입</span>
+            <form action="/signup" method="post" class="flex-column mb-large align-items-center mt-middle">
+                <input type="text" name="email" placeholder="이메일을 입력하세요." class="mb-small account-input">
+                <input type="password" name="password" placeholder="비밀번호를 입력하세요." class="mb-small account-input">
+                <input type="text" name="name" placeholder="이름을 입력하세요." class="mb-small account-input">
+                <input type="text" name="phone" placeholder="전화번호를 입력하세요.(하이픈 제외)" class="mb-small account-input">
+                <input type="text" name="address" placeholder="주소를 입력하세요." class="mb-small account-input">
+                <input type="submit" value="회원가입" class="login-button padding-small cursor-pointer" >
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
