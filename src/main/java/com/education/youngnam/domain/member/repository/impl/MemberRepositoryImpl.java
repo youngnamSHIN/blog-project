@@ -81,7 +81,6 @@ public class MemberRepositoryImpl implements MemberRepository {
             if(rs.next()) {
                 int id = rs.getInt(1);
                 String foundEmail = rs.getString(2);
-//                String password = rs.getString("PASWORD");
                 String password = rs.getString(3);
                 String foundName = rs.getString(4);
                 String foundPhone = rs.getString(5);

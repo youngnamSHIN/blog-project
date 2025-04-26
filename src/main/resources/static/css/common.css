@@ -1,3 +1,11 @@
+.width-100 {
+    width: 100%;
+}
+
+.width-90 {
+    width: 90%;
+}
+
 .flex { /*자주 사용할것들*/
     display: flex;
 }
@@ -41,6 +49,31 @@
     margin-bottom: 100px;
 }
 
+.ml-middle {
+    margin-left: 50px;
+}
+
+.ml-small {
+    margin-left: 10px;
+}
+
+.ml-large{
+    margin-left: 100px;
+}
+
+.mr-middle {
+    margin-right: 50px;
+}
+
+.mr-small {
+    margin-right: 10px;
+}
+
+.mr-large{
+    margin-right: 100px;
+}
+
+
 .padding-small{
     padding: 10px;
 }
@@ -57,4 +90,9 @@
     cursor: pointer;
 }
 
-
+.small-btn{
+    padding: 5px;
+    hegith: 30px;
+    background-color: white;
+    border: 1px solid black;
+}

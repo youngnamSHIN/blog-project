@@ -4,6 +4,7 @@ import com.education.youngnam.domain.auth.model.dto.SignupReq;
 import com.education.youngnam.domain.member.model.Member;
 import com.education.youngnam.domain.member.repository.MemberRepository;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
@@ -18,30 +19,23 @@ public class AuthService {// 컨트롤러로부터 전달받은 데이터를 가
     }
 
     public int register(SignupReq signupReq) throws SQLException { //원래 여기에 회원 저장, 중복체크 등의 로직이 들어가야하고
-        if(this.isDuplicateEmail(signupReq.getEmail())) { // 이메일 중복 검사
+        if(this.isDuplicatedEmail(signupReq.getEmail())) { // 이메일 중복 검사
             System.out.println("이메일이 중복됩니다.");
             return 0;
         }
         Member toSaveMember = new Member();
         toSaveMember.registerMember(signupReq.getEmail(), this.encryptPassword(signupReq.getPassword()),signupReq.getName(), signupReq.getPhone(), signupReq.getAddress()); // 여기메서드에 전달 해주는 역할
-        // 회원가입이 성공했으면 가입한 회원의 정보를 출력
-        // 실패했으면 실패했다고 출력하기.
-        /*if (memberRepository.save(toSaveMember) > 0){
-            System.out.println(toSaveMember.toString());
-        }else {
-            System.out.println("실패하였습니다.");
-        }*/
         return memberRepository.save(toSaveMember);
     }
 
-    public boolean isDuplicateEmail(String email) throws SQLException {
+    public boolean isDuplicatedEmail(String email) throws SQLException {
         Member member = memberRepository.findByEmail(email);
         return member != null;
     }
 
-
-
     private String encryptPassword(String password){
         return BCrypt.hashpw(password, BCrypt.gensalt()); // 비밀번호 보안
     }
+
+
 }
