@@ -1,13 +1,12 @@
 package com.education.youngnam.domain.auth.service;
 
+import com.education.youngnam.domain.auth.model.dto.LoginReq;
 import com.education.youngnam.domain.auth.model.dto.SignupReq;
-import com.education.youngnam.domain.member.model.Member;
-import com.education.youngnam.domain.member.repository.MemberRepository;
+import com.education.youngnam.domain.member.model.entity.Member;
+import com.education.youngnam.domain.member.repository.impl.MemberRepository;
 import org.mindrot.jbcrypt.BCrypt;
-import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
 import java.sql.SQLException;
 
 
@@ -31,6 +30,18 @@ public class AuthService {// 컨트롤러로부터 전달받은 데이터를 가
     public boolean isDuplicatedEmail(String email) throws SQLException {
         Member member = memberRepository.findByEmail(email);
         return member != null;
+    }
+
+    public Member login(LoginReq req)throws SQLException{
+        Member foundMember = memberRepository.findByEmail(req.getEmail());
+        if(foundMember == null) {
+            System.out.println("존재하지 않는 이메일");
+            return null;
+        } else if(!BCrypt.checkpw(req.getPassword(), foundMember.getPassword())){ // 평문이랑 암호화 두가지 를 받아서 평문을 암호화 시켜서 일치하는지 확인하는 것 
+            System.out.println("비밀번호 일치하지 않음");
+            return null;
+        }
+        return foundMember;
     }
 
     private String encryptPassword(String password){

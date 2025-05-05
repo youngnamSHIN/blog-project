@@ -12,21 +12,24 @@
 <body>
 <div class="background flex justify-content-center align-items-center">
     <div class = "login">
-        <div class="flex-column">
+        <div class="flex-column padding-small">
             <span class="tittle">회원가입</span>
-            <form action="/signup" method="post" class="flex-column mb-large align-items-center mt-middle">
-                <div class="flex width-100">
-                    <input type="text" id = "fi" name="email" placeholder="이메일을 입력하세요." class="mb-small account-input mr-small">
-                    <button type="button" class="small-btn" onclick="isDuplicatedEmail()">이메일 중복 확인</button>
+<!--            <form action="/signup" method="post" class="flex-column mb-large align-items-center mt-middle"> -->
+                <div class="flex-column mb-large align-items-center mt-middle">
+                    <div class="flex width-100">
+                        <input type="text" id = "fi" name="email" placeholder="이메일을 입력하세요." class="mb-small account-input mr-small">
+                        <button type="button" class="middle-btn mr-small" onclick="isDuplicatedEmail()">이메일 중복 확인</button>
+                        <button type="button" class="small-btn" onclick="alert()">인증하기</button>
+                    </div>
+                    <div class="flex-column width-100">
+                        <input type="password" id = "pw" name="password" placeholder="비밀번호를 입력하세요." class="mb-small account-input">
+                        <input type="text" id = "nm" name="name" placeholder="이름을 입력하세요." class="mb-small account-input">
+                        <input type="text" id = "ph" name="phone" placeholder="전화번호를 입력하세요.(하이픈 제외)" class="mb-small account-input">
+                        <input type="text" id = "ad" name="address" placeholder="주소를 입력하세요." class="mb-small account-input">
+                        <input type="button" onclick="register()" value="회원가입" class="login-button padding-small cursor-pointer" >
+                    </div>
                 </div>
-                <div class="flex-column width-100">
-                    <input type="password" name="password" placeholder="비밀번호를 입력하세요." class="mb-small account-input">
-                    <input type="text" name="name" placeholder="이름을 입력하세요." class="mb-small account-input">
-                    <input type="text" name="phone" placeholder="전화번호를 입력하세요.(하이픈 제외)" class="mb-small account-input">
-                    <input type="text" name="address" placeholder="주소를 입력하세요." class="mb-small account-input">
-                    <input type="submit" value="회원가입" class="login-button padding-small cursor-pointer" >
-                </div>
-            </form>
+<!--            </form>-->
         </div>
         <button type="button" onclick="test()">테스트버튼</button>
     </div>
