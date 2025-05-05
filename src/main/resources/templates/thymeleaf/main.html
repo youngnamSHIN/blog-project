@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>메인 페이지</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}" />
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+<div class="flex width-100">
+    <div class="flex-column mr-small width-70 box"> <!-- 좌측 게시물 목록 박스 -->
+        <div class="flex mt-small ml-small separate"> <!-- 각 게시물 영역 -->
+            <div class="flex-column width-80">
+                <div class="flex mb-small">
+                    <div style="background-color: red; width: 20px; height: 20px;" class="mr-small"></div>
+                    <span>자바맨</span>
+                </div>
+                <span class="title">JVM이란?</span>
+                <span class="content">자바 가상 머신은 자바 바이트코드를 실행할 수 있는 주체이다. 일반적으로 인터프리터나 JIT 컴파일 방식으로 다른 컴퓨터 위에서 바이트코드를 실행할 수 있도록 구현... </span>
+            </div>
+            <div style="background-color: red" class="width-10 mr-small"> <!-- 썸네일 이미지 영역 -->
+            </div>
+        </div>
+        <div class="flex mt-small ml-small separate"> <!-- 각 게시물 영역 -->
+            <div class="flex-column width-80">
+                <div class="flex mb-small">
+                    <div style="background-color: red; width: 20px; height: 20px;" class="mr-small"></div>
+                    <span>자바맨</span>
+                </div>
+                <span class="title">JVM이란?</span>
+                <span class="content">자바 가상 머신은 자바 <바이트코드를></바이트코드를> 실행할 수 있는 주체이다. 일반적으로 인터프리터나 JIT 컴파일 방식으로 다른 컴퓨터 위에서 바이트코드를 실행할 수 있도록 구현... </span>
+            </div>
+            <div style="background-color: red" class="width-10 mr-small"> <!-- 썸네일 이미지 영역 -->
+            </div>
+        </div>
+    </div>
+    <div class="flex-column width-30 box" style="height: 100px;"> <!-- 우측 회원정보 박스 -->
+        <div class="flex padding-small width-100"> <!-- 프로필 정보 박스 -->
+            <div class="width-10"> <!-- 프로필 이미지 영역 -->
+                <div style="background-color: red; width: 50px; height: 50px;" class="mr-small"></div>
+            </div>
+            <div class="flex-column width-70"> <!-- 프로필 정보 영역 -->
+                <span th:text="${name} + '님 환영 합니다.'"></span> <!--이름님 환영합니다. -->
+                <span th:text="'총받은 좋아요 수 : ' + ${total_likes}+'개'"></span>
+            </div>
+            <div>
+                <div style="background-color: red; width: 20px; height: 20px;"></div> <!-- 알림 이미지 영역 -->
+            </div>
+        </div>
+        <div class ="flex box ml-small mr-small mb-small pl-small pr-small justify-content-space-around"> <!-- 게시물 작성 및 관리 박스 -->
+            <span>글쓰기</span>
+            <span>내 블로그</span>
+            <span>계정 관리</span>
+            <span>북마크</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

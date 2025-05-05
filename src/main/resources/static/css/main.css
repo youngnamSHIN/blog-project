@@ -1,3 +1,14 @@
-.test {
-    color: red;
+.box {
+    border: 1px darkgrey solid;
+    border-radius: 10px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.separate {
+    padding-bottom: 10px;
+    border-bottom: 1px solid darkgrey;
 }

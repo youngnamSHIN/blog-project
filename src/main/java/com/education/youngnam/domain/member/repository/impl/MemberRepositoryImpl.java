@@ -1,8 +1,6 @@
 package com.education.youngnam.domain.member.repository.impl;
 
-import com.education.youngnam.domain.auth.service.AuthService;
-import com.education.youngnam.domain.member.model.Member;
-import com.education.youngnam.domain.member.repository.MemberRepository;
+import com.education.youngnam.domain.member.model.entity.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -19,8 +17,6 @@ public class MemberRepositoryImpl implements MemberRepository {
 
     @Override
     public int save(Member member) throws SQLException {
-        /*String sql = "INSERT INTO (ID,EMAIL,PASSWORD,NAME,PHONE_NUM,ADRESS,CREATED_AT,UPDATED_AT)" +
-                "VALUES(default, + "+ member.getEmail() + ","+"))" ;*/
         //자바에서 데이터에 저장
         String sql = "INSERT INTO MEMBER (EMAIL, PASSWORD, NAME, PHONE_NUM, ADDRESS) VALUES(?, ?, ?, ?, ?)";
         // Statement는 쿼리문이 변조될 수 있기 때문에 사용하지 않음 (보안 취약)
@@ -67,12 +63,12 @@ public class MemberRepositoryImpl implements MemberRepository {
 
     @Override
     public Member findByEmail(String email) throws SQLException {
-        String findSql = "SELECT ID, EMAIL, PASSWORD, NAME, PHONE_NUM, ADDRESS, CREATED_AT, UPDATED_AT FROM MEMBER WHERE EMAIL = ?";
+        String findSql = "SELECT ID, EMAIL, PASSWORD, NAME, PHONE_NUM, ADDRESS, CREATED_AT, UPDATED_AT, TOTAL_LIKES FROM MEMBER WHERE EMAIL = ?";
         PreparedStatement pstmt = null;
         Connection conn = null;
         ResultSet rs = null;
-        int result = 0;
         Member foundMember = null;
+
         try{
             conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(findSql);
@@ -88,8 +84,9 @@ public class MemberRepositoryImpl implements MemberRepository {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 LocalDateTime createdAt = LocalDateTime.parse(rs.getString(7), formatter);
                 LocalDateTime uppdatedAt = rs.getString(8) != null ?LocalDateTime.parse(rs.getString(8), formatter) : null;
+                int foundLikes = rs.getInt(9);
+                foundMember = new Member(id, foundEmail, password, foundName, foundPhone, foundAdress, createdAt, uppdatedAt,foundLikes);
 
-                foundMember = new Member(id, foundEmail, password, foundName, foundPhone, foundAdress, createdAt, uppdatedAt);
             }
         } finally {
             pstmt.close();
@@ -98,7 +95,44 @@ public class MemberRepositoryImpl implements MemberRepository {
         }
         return foundMember;
     }
+    @Override
+    public Member LoginMember(Member member) throws SQLException {
+
+        String sql =  "SELECT EMAIL, PASSWORD, NAME, PHONE_NUM, ADDRESS, TOTAL_LIKES " +
+                      "FROM MEMBER " +
+                      "WHERE EMAIL = (?) AND PASSWORD = (?)";
+        PreparedStatement psmt = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        Member postMember = null;
+
+        try{
+            conn = dataSource.getConnection();
+            psmt = conn.prepareStatement(sql);
+            psmt.setString(1, member.getEmail());
+            psmt.setString(2, member.getPassword());
+            rs = psmt.executeQuery();
+            if (rs.next()){
+                String currentEmail = rs.getString(1); // 쿼리가 조회 된다면 확인을 위해 이메일을 가져오고
+                String currentPassword = rs.getString(2); // 확인을 위해 비밀번호를 가져온다.
+                String currentName = rs.getString(3);
+                String currentPhone = rs.getString(4);
+                String currentAdress = rs.getString(5);
+                int currentLikes = rs.getInt(6);
+                postMember = new Member(currentEmail,currentPassword,currentName,currentPhone,currentAdress,currentLikes);
+            }
+        }finally {
+            psmt.close();
+            conn.close();
+            rs.close();
+        }
+        return postMember;
+    }
+
 }
 // 결과를 받아서 리턴해서 서비스에서 사용
 // 쿼리의 결과를 int형으로 받고, 이를 호출하는 쪽(service)으로 반환해주도록
 // 그리고 반환받은 service쪽은 해당 값을 sysout으로 출력해보기
+
+
+

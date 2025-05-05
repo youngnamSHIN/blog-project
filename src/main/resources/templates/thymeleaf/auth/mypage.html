@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+</head>
+<body>
+<div class="background flex justify-content-center align-items-center">
+    <div class="text-white">
+        <h1 id ="tittle">회원정보 수정</h1>
+        <div>아이디*</div>
+        <input text="text" th:value="${member.email}">
+        <div>비밀번호*</div>
+        <input text = "text" >
+        <div>비밀번호 확인*</div>
+        <input text = "text">
+        <div>이름*</div>
+        <input text = "text"  th:value="${member.name}">
+        <div>전화번호*</div>
+        <input text = "text" placeholder="하이픈 없이 입력해 주세요."  th:value="${member.phoneNum}">
+        <div>주소</div>
+        <input text = "text" th:value="${member.address}">
+    </div>
+</div>
+
+</body>
+</html>
+<script>
+</script>

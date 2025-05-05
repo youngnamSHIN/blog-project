@@ -6,17 +6,21 @@
     <title>로그인</title>
     <link rel="stylesheet" th:href="@{/css/auth.css}">
     <link rel="stylesheet" th:href="@{/css/common.css}">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script th:src="@{/js/login.js}"></script>  <!--4월 29일 수정 -->
 </head>
 <body>
     <div class="background flex justify-content-center align-items-center"> <!--여기는 고정적으로 있음 -->
         <div class = "login"><!--로그인 박스 영역-->
-            <div class="flex-column">
+            <div class="flex-column padding-small">
                 <span class="tittle">로그인</span>
-                <form action="" class="flex-column mb-large align-items-center mt-middle"> <!--form 태그 사용이유 전송해야 하기떄문에(아이디, 비밀번호 입력)-->
-                    <input type="text" placeholder="이메일을 입력하세요." class="mb-small account-input">
-                    <input type="password" placeholder="비밀번호를 입력하세요." class="mb-small account-input">
-                    <input type="submit" value="로그인" class="login-button padding-small cursor-pointer" >
-                </form>
+<!--                <form action="/login" method="post" class="flex-column mb-large align-items-center mt-middle"> &lt;!&ndash;form 태그 사용이유 전송해야 하기떄문에(아이디, 비밀번호 입력)&ndash;&gt;-->
+                <div>
+                    <input type="text" id = "login-email" name="email" placeholder="이메일을 입력하세요." class="mb-small account-input">
+                    <input type="password" id = "login-password" name="password" placeholder="비밀번호를 입력하세요." class="mb-small account-input">
+                    <input type="button"  value="로그인" class="login-button padding-small cursor-pointer" onclick="login()">
+                </div>
+                <!--</form>-->
                 <div class="flex justify-space-between padding-small"><!--로그인 박스 내의 푸터터-->
                     <span id ="register-btn" th:onclick="|location.href='@{signup}'|" class="cursor-pointer">회원가입</span>
                     <div>
