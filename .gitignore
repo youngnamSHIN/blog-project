@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# Important Files
+application-mail.yml
